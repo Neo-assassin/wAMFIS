@@ -1,0 +1,112 @@
+print("\nAccuracy Drops:")
+print("Noise Drop:", baseline_acc - acc_noise)
+print("Shift Drop:", baseline_acc - acc_shift)
+print("Removed Drop:", baseline_acc - acc_removed)
+print("Columns:", df.columns)  
+print(X.shape)
+print(y.shape)
+
+
+
+
+
+
+
+#########################GRAPHS##################################
+
+
+plt.figure(figsize=(10,7))
+
+# Color mapping for scenarios
+colors = {
+    "noise": "blue",
+    "shift": "red",
+    "feature_removed": "green"
+}
+
+# Plot each scenario separately
+for scenario in df_results["scenario"].unique():
+    subset = df_results[df_results["scenario"] == scenario]
+    
+    plt.scatter(
+        subset["psi"],
+        subset["acc_drop"],
+        color=colors.get(scenario, "black"),
+        label=scenario,
+        s=120,          # bigger points
+        alpha=0.7
+    )
+
+# Labels
+plt.xlabel("PSI (Data Drift)", fontsize=12)
+plt.ylabel("Accuracy Drop", fontsize=12)
+
+# Title
+plt.title("Model Degradation under Different Conditions", fontsize=14)
+
+# Grid
+plt.grid(True, linestyle="--", alpha=0.5)
+
+# Legend
+plt.legend(title="Scenario")
+
+# Highlight zones
+plt.axvline(x=0.1, color='orange', linestyle='--', label="Moderate Drift")
+plt.axvline(x=0.25, color='red', linestyle='--', label="High Drift")
+
+scenarios = ["Baseline", "Noise", "Shift", "Feature Removed"]
+accuracies = [
+    baseline_acc,
+    acc_noise,
+    acc_shift,
+    acc_removed
+]
+
+colors = ["green", "blue", "red", "orange"]
+
+plt.figure(figsize=(10,6))
+
+bars = plt.bar(scenarios, accuracies, color=colors)
+
+# Add values on top
+for bar in bars:
+    height = bar.get_height()
+    plt.text(bar.get_x() + bar.get_width()/2, height,
+             f"{height:.2f}", ha='center', va='bottom', fontsize=10)
+
+plt.title("Model Accuracy Before vs After Degradation", fontsize=14)
+plt.ylabel("Accuracy")
+plt.ylim(0, 1)
+plt.grid(axis='y', linestyle='--', alpha=0.5)
+
+plt.show()
+
+plt.figure(figsize=(10,6))
+
+plt.plot(scenarios, accuracies, marker='o', linewidth=2)
+
+plt.title("Performance Degradation Trend", fontsize=14)
+plt.xlabel("Scenario")
+plt.ylabel("Accuracy")
+
+plt.grid(True, linestyle="--", alpha=0.5)
+
+plt.show()
+
+###plt.figure(figsize=(10,6))
+
+plt.plot(["Noise", "Shift"],
+         [acc_noise, acc_shift],
+         marker='o',
+         label="Accuracy")
+
+plt.plot(["Noise", "Shift"],
+         [psi_noise, psi_shift],
+         marker='s',
+         label="PSI (Drift)")
+
+plt.title("Accuracy vs Drift Comparison")
+plt.legend()
+plt.grid(True)
+
+plt.show()

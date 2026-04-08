@@ -1,0 +1,5 @@
+& .\.venv\Scripts\Activate.ps1
+python AMFIS/src/bank_data.py
+python AMFIS/src/loan_data.py
+python AMFIS/src/main.py
+python AMFIS/src/final_results.py
