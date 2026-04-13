@@ -1,0 +1,4 @@
+dataset,scenario,accuracy,acc_drop,psi
+German Credit,noise,0.8,0.0,0.08020383370591763
+German Credit,shift,0.78,0.020000000000000018,9.806163934425497
+German Credit,feature_removed,0.735,0.06500000000000006,0.0

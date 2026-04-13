@@ -1,0 +1,46 @@
+[
+  {
+    "id": "adult",
+    "name": "Adult",
+    "lastUpdated": "just now",
+    "healthScore": 79,
+    "riskLevel": "high",
+    "accuracyDrop": true,
+    "driftDetected": true,
+    "driftMetric": "",
+    "failures": 0
+  },
+  {
+    "id": "bank",
+    "name": "Bank",
+    "lastUpdated": "just now",
+    "healthScore": 82,
+    "riskLevel": "high",
+    "accuracyDrop": false,
+    "driftDetected": true,
+    "driftMetric": "",
+    "failures": 2
+  },
+  {
+    "id": "german-credit",
+    "name": "German Credit",
+    "lastUpdated": "just now",
+    "healthScore": 82,
+    "riskLevel": "high",
+    "accuracyDrop": true,
+    "driftDetected": true,
+    "driftMetric": "",
+    "failures": 3
+  },
+  {
+    "id": "loan",
+    "name": "Loan",
+    "lastUpdated": "just now",
+    "healthScore": 86,
+    "riskLevel": "high",
+    "accuracyDrop": true,
+    "driftDetected": true,
+    "driftMetric": "",
+    "failures": 0
+  }
+]
